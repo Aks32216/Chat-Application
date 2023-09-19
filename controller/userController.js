@@ -39,7 +39,7 @@ const login=async (req,res)=>{
     try {
         const {email,password}=req.body;
         const userData=await User.findOne({email: email});
-        console.log(userData);
+        // console.log(userData);
         if(userData){
             const passMatch=await bcrypt.compare(password,userData.password);
             if(passMatch){
