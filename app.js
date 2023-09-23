@@ -40,6 +40,13 @@ unsp.on('connection',async (socket)=>{
         socket.broadcast.emit('getOflineUser',{user_id:uid});
 
     })
+
+    // chat send broadcast
+
+    socket.on('newChat',(data)=>{
+        // console.log(data);
+        socket.broadcast.emit('loadNewChat',data);
+    })
 })
 
 mongoose.connect('mongodb://127.0.0.1:27017/dynamic-chat-app');
