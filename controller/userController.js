@@ -21,7 +21,7 @@ const register=async (req,res)=>{
             password: passwordHash
         })
         await user.save();
-        console.log('saved to db');
+        // console.log('saved to db');
         res.render('register',{message: 'Registration Successfull'})
     }catch(error){
         console.log(error.message);

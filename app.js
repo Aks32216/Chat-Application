@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose=require('mongoose');
 const express=require('express');
 const User=require('./models/userModel');
+const Chat=require('./models/chatModel');
 
 const app=express();
 const http=require('http').Server(app);
@@ -47,6 +48,18 @@ unsp.on('connection',async (socket)=>{
         // console.log(data);
         socket.broadcast.emit('loadNewChat',data);
     })
+
+    // load old chats
+
+    socket.on('existsChat',async (data)=>{
+        let chats=await Chat.find({$or:[
+            {sender_id:data.sender_id,receiver_id:data.receiver_id},
+            {sender_id:data.receiver_id,receiver_id:data.sender_id}
+        ]});
+        socket.emit('loadChats',{chats:chats});
+    })
+
+
 })
 
 mongoose.connect('mongodb://127.0.0.1:27017/dynamic-chat-app');
