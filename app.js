@@ -59,6 +59,12 @@ unsp.on('connection',async (socket)=>{
         socket.emit('loadChats',{chats:chats});
     })
 
+    // delete chats
+
+    socket.on('chatDeleted',(id)=>{
+        socket.broadcast.emit('chatMessageDeleted',id);
+    })
+
 
 })
 

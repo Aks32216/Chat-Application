@@ -8376,3 +8376,7 @@ a[data-toggle="collapse"] {
   color: #fff;
   border-radius: 8px;
 }
+
+.fa-trash{
+  cursor: pointer;
+}
