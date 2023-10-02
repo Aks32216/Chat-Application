@@ -23,7 +23,7 @@ app.use('/',userRoute);
 let unsp=io.of('/user-namespace');
 
 unsp.on('connection',async (socket)=>{
-    console.log('user connected');
+    // console.log('user connected');
 
     let uid=socket.handshake.auth.token;
 
@@ -33,7 +33,7 @@ unsp.on('connection',async (socket)=>{
     socket.broadcast.emit('getOnlineUser',{user_id:uid});
     
     socket.on('disconnect',async ()=>{
-        console.log('user disconnected');
+        // console.log('user disconnected');
         let uid=socket.handshake.auth.token;
         await User.findByIdAndUpdate({_id:uid},{$set:{isOnline:'0'}});
 

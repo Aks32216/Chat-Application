@@ -77,7 +77,7 @@ const loadDashboard=async (req,res)=>{
 
 const saveChat=async (req,res)=>{
     // console.log('chat send');
-    console.log(req.body.sender_id,req.body.receiver_id);
+    // console.log(req.body.sender_id,req.body.receiver_id);
     try {
         
         let chat=new Chat({
